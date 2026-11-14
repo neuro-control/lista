@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Contribui+ | 2º A – MAT</title>
+<style>
+*{box-sizing:border-box}body{margin:0;font:15px/1.5 system-ui,"Segoe UI",Roboto,sans-serif;background:#f4f6fa;color:#1d2433}
+header{background:#14213d;color:#fff;padding:12px 18px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+header h1{margin:0;font-size:22px}header small{display:block;opacity:.7;font-size:12px}
+nav{display:flex;gap:4px;overflow-x:auto;flex:1}nav a{color:#cfd6e6;padding:9px 12px;border-radius:9px;white-space:nowrap;cursor:pointer;text-decoration:none}nav a.on,nav a:hover{background:#ffffff22;color:#fff}
+main{max-width:1200px;margin:0 auto;padding:20px 14px}
+@keyframes in{from{opacity:0;transform:translateY(8px)}}@keyframes g{from{width:0}}@keyframes sh{to{background-position:-200% 0}}@keyframes pop{from{transform:scale(1.25);color:#2563eb}}
+.sec{animation:in .3s}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px;margin:16px 0}
+.card{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 10px #14213d14}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-bottom:16px}.stats div{background:#fff;border-radius:14px;padding:14px;box-shadow:0 2px 10px #14213d14}.stats b{display:block;font-size:26px;color:#14213d}.stats span{color:#6b7385;font-size:13px}
+.bar{height:10px;background:#e3e7ef;border-radius:9px;overflow:hidden;margin:10px 0 4px}.bar b{display:block;height:100%;background:#14213d;border-radius:9px;animation:g 1s}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}.chips span{border-left:4px solid var(--c);background:#f1f3f8;padding:3px 9px;border-radius:7px;font-size:13px}.chips .lg{display:flex;align-items:center;gap:6px}
+.btn,.btn2,.card button:not(.sq){background:#14213d;color:#fff;border:0;border-radius:10px;padding:10px 16px;cursor:pointer;text-decoration:none;display:inline-block;font:inherit;transition:.15s;margin:3px 3px 3px 0}.btn2{background:#fff;color:#14213d;border:1px solid #14213d}.btn:active{transform:scale(.96)}
+.cd{background:#14213d;color:#fff;text-align:center}.cd #cd{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}.cd #cd div{background:#ffffff1c;border-radius:12px;padding:10px 14px;min-width:78px}.cd b{display:block;font-size:34px}.cd b.pop{animation:pop .4s}.cd span{font-size:12px;opacity:.8}.cd small,.cd .end{width:100%;display:block}.end{font-size:20px;font-weight:700}
+.tw{overflow-x:auto;background:#fff;border-radius:16px;box-shadow:0 2px 10px #14213d14}table{border-collapse:collapse;width:100%}th,td{padding:8px 10px;text-align:center;border-bottom:1px solid #edf0f5;font-size:13px}th{background:#f8f9fc;font-weight:600}th i{display:block;height:4px;border-radius:3px;margin-bottom:4px}
+td:first-child,th:first-child{text-align:left;position:sticky;left:0;background:#fff;min-width:190px;z-index:1}th:first-child{background:#f8f9fc}
+.sq{width:34px;height:34px;border-radius:9px;border:2px dashed #d5dae5;background:#f1f3f8;display:inline-grid;place-items:center;color:#fff;font-weight:700;padding:0;transition:.15s;font-size:15px}.sq.on{background:var(--c);border:2px solid var(--c)}button.sq{cursor:pointer}button.sq:active{transform:scale(.88)}
+.bar2{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}input,select,textarea{font:inherit;padding:10px 12px;border:1px solid #d5dae5;border-radius:10px;background:#fff;min-width:0}.bar2 input{flex:1;min-width:180px}
+.form{display:grid;gap:12px;max-width:520px}.form label{display:grid;gap:4px;font-weight:600}
+.tabs{display:flex;gap:6px;overflow-x:auto;margin:6px 0 12px}.tabs a{padding:9px 14px;border-radius:10px;background:#e3e7ef;cursor:pointer;white-space:nowrap}.tabs a.on{background:#14213d;color:#fff}
+.top2{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.top2 h2{margin:0;flex:1}.sv{font-size:13px;color:#16a34a;font-weight:600}.sv.er{color:#dc2626}
+.rq{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-bottom:10px;padding:12px 16px}.rq>b{flex:1;min-width:200px}.arq{opacity:.55}
+.pill{padding:3px 10px;border-radius:20px;font-size:12px;background:#e3e7ef;font-weight:600}.pill.ok,.pill.aprovada{background:#dcfce7;color:#15803d}.pill.no,.pill.recusada{background:#fee2e2;color:#b91c1c}.pill.pendente{background:#fef3c7;color:#92400e}
+.sk{height:90px;border-radius:16px;margin-bottom:14px;background:linear-gradient(90deg,#e8ebf2 25%,#f6f7fb 50%,#e8ebf2 75%);background-size:200% 100%;animation:sh 1.2s infinite}
+#toast{position:fixed;bottom:18px;left:50%;transform:translateX(-50%);z-index:9}#toast div{background:#14213d;color:#fff;padding:12px 18px;border-radius:12px;margin-top:8px;animation:in .25s;box-shadow:0 6px 20px #0004}#toast .er{background:#b91c1c}
+.pt{display:none}@media print{header,.noprint,.tabs,.top2{display:none}.pt{display:block}body{background:#fff}.card,.tw{box-shadow:none}td:first-child,th:first-child{position:static}}
+@media(max-width:640px){header{padding:10px}.sq{width:30px;height:30px}.cd b{font-size:26px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important}}
+</style></head><body>
+<header><div><h1>CONTRIBUI+</h1><small>Painel de contribuições da turma · 2º A – MAT</small></div>
+<nav id="nav"></nav></header>
+<main id="app"><div class="sk"></div><div class="sk"></div><div class="sk"></div></main><div id="toast"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script>
+/* ================= CONFIGURAÇÕES DO APLICATIVO =================
+   Cole aqui a URL e a chave pública (publishable/anon) do seu projeto Supabase.
+   (Supabase > Project Settings > API). Nunca coloque a senha do banco aqui.
+   A senha do admin NÃO fica neste arquivo: está (em hash) no banco, veja database.sql. */
+const SUPABASE_URL='https://yanvnysyyviqnydzackh.supabase.co';
+const SUPABASE_ANON_KEY='sb_publishable_fX1VzGeIlD_2iJaVd1n_fQ_j9k5dqaG';
+const ADMIN_USER='admin';
+/* =============================================================== */
+const db=supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY),$=s=>document.querySelector(s);
+const e=x=>String(x??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
+const pl={inter:'Interclasse',ger:'Projeto das Gerações'};
+let S=[],T=[],C=new Set(),P=new Set(),Q=[],CFG={},PW='',sec=location.hash.slice(1)||'home',tab='reg',q='',flt='all',ord='az',cur='all',curAdm=0;
+try{PW=sessionStorage.getItem('pw')||''}catch{}
+const NAV=[['home','Início'],['inter','Interclasse'],['ger','Gerações'],['me','Minha situação'],['req','Solicitações'],['how','Como funciona'],['admin','Admin']];
+$('#nav').innerHTML=NAV.map(([k,l])=>`<a data-s="${k}" href="#${k}">${l}</a>`).join('');
+
+async function load(){
+ const r=await Promise.all(['students','contribution_types','contributions','payments','suggestions','settings'].map(t=>db.from(t).select('*')));
+ if(r.some(x=>x.error)){toast('Erro ao carregar. Confira se o database.sql foi executado.',1);return false}
+ S=r[0].data.sort((a,b)=>a.name.localeCompare(b.name,'pt'));T=r[1].data.sort((a,b)=>a.sort-b.sort);
+ C=new Set(r[2].data.map(x=>x.student_id+'|'+x.type_code));P=new Set(r[3].data.filter(x=>x.paid).map(x=>x.student_id));
+ Q=r[4].data.sort((a,b)=>b.id-a.id);CFG=Object.fromEntries(r[5].data.map(x=>[x.key,x.value]));return true}
+const act=()=>S.filter(s=>!s.archived),has=(s,c)=>c==='paid'?P.has(s):C.has(s+'|'+c);
+const cols=p=>T.filter(t=>p==='all'||t.project==='all'||t.project===p),cnt=(s,p='all')=>cols(p).filter(t=>has(s,t.code)).length;
+const lb=(t,f)=>t.label+(f&&pl[t.project]?' · '+(t.project==='inter'?'Inter.':'Ger.'):'');
+const sq=(s,t)=>{const o=has(s.id,t.code);return `<span class="sq${o?' on':''}" style="--c:${t.color}" title="${e(t.label)}">${o?'✓':''}</span>`};
+const bt=(s,t)=>{const o=has(s.id,t.code);return `<button class="sq${o?' on':''}" style="--c:${t.color}" title="${e(t.label)}" onclick="tg(this,'${s.id}','${t.code}')">${o?'✓':''}</button>`};
+const fmt=d=>d.toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',dateStyle:'long',timeStyle:'short'});
+const nm=id=>(S.find(s=>s.id===id)||{}).name||'',lab=c=>(T.find(t=>t.code===c)||{}).label||c;
+
+function toast(m,er){const d=document.createElement('div');d.textContent=m;if(er)d.className='er';$('#toast').append(d);setTimeout(()=>d.remove(),3500)}
+function sv(m,er){const x=$('#sv');if(x){x.textContent=m;x.className='sv'+(er?' er':'')}if(er)toast(m,1)}
+
+function sts(adm){const a=act(),n=a.length,pd=a.filter(s=>P.has(s.id)).length,any=a.filter(s=>cnt(s.id)>0).length,tot=a.reduce((x,s)=>x+cnt(s.id),0),pend=Q.filter(x=>x.status==='pendente').length;
+ const L=[['Alunos',n],['Pagantes',pd],['Com registros',any],['Contribuições',tot],[adm?'Sem pagamento':'Progresso geral',adm?n-pd:(n?Math.round(any*100/n):0)+'%']];
+ if(adm)L.push(['Solicitações pendentes',pend]);return L.map(([l,v])=>`<div><b>${v}</b><span>${l}</span></div>`).join('')}
+function card(p,tx){const a=act(),n=a.length,k=a.filter(s=>cnt(s.id,p)>0).length,pc=n?Math.round(k*100/n):0;
+ return `<div class="card"><h3>${pl[p].toUpperCase()}</h3><p>${tx}</p><div class="bar"><b style="width:${pc}%"></b></div><small>${k} de ${n} alunos com registro (${pc}%)</small><div class="chips">${cols(p).map(t=>`<span style="--c:${t.color}">${t.label}: ${a.filter(s=>has(s.id,t.code)).length}</span>`).join('')}</div><a class="btn" href="#${p}">Abrir tabela</a></div>`}
+function home(){return `<div class="sec"><h2>Visão geral</h2><div class="stats">${sts()}</div><div class="card cd"><h3>PRAZO PARA PAGAMENTO</h3><div id="cd"></div></div><div class="grid">${card('inter','Quem pagou, jogou, organizou e ajudou no Interclasse.')}${card('ger','Quem pagou, apresentou, organizou e ajudou no Projeto das Gerações.')}</div></div>`}
+function tick(){const el=$('#cd');if(!el)return;const d=new Date(CFG.deadline||'2026-11-25T23:59:00-03:00'),ms=d-Date.now();
+ if(!(ms>0)){el.innerHTML=`<p class="end">Prazo de pagamento encerrado</p><small>${fmt(d)}</small>`;return}
+ const v=[Math.floor(ms/864e5),Math.floor(ms/36e5)%24,Math.floor(ms/6e4)%60,Math.floor(ms/1e3)%60],l=['DIAS','HORAS','MIN','SEG'];
+ el.innerHTML=v.map((x,i)=>`<div><b class="${i==3?'pop':''}">${String(x).padStart(2,'0')}</b><span>${l[i]}</span></div>`).join('')+`<small>Até ${fmt(d)} (Brasília)</small>`}
+
+function rows(f){let r=act().filter(s=>s.name.toLowerCase().includes(q.toLowerCase()));
+ const pr={all:()=>1,none:s=>!cnt(s.id),unpaid:s=>!P.has(s.id)};r=r.filter(s=>pr[f]?pr[f](s):has(s.id,f));
+ return ord==='n'?r.sort((a,b)=>cnt(b.id)-cnt(a.id)||a.name.localeCompare(b.name,'pt')):r}
+function tbl(p,adm){const cs=cols(p),r=rows(adm?flt:'all');
+ return `<div class="tw"><table><thead><tr><th>Aluno</th>${cs.map(t=>`<th title="${e(t.hint)}"><i style="background:${t.color}"></i>${lb(t,p==='all')}</th>`).join('')}<th>Total</th></tr></thead><tbody>${r.map(s=>`<tr><td>${e(s.name)}</td>${cs.map(t=>`<td>${adm?bt(s,t):sq(s,t)}</td>`).join('')}<td><b>${cnt(s.id,p)}</b></td></tr>`).join('')||'<tr><td colspan="99">Nenhum aluno encontrado.</td></tr>'}</tbody></table></div>`}
+const upd=()=>{const b=$('#tb');if(b)b.innerHTML=tbl(cur,curAdm)};
+const bar=adm=>`<div class="bar2 noprint"><input placeholder="Pesquisar aluno..." value="${e(q)}" oninput="q=this.value;upd()">${adm?`<select onchange="flt=this.value;upd()"><option value="all">Todos<option value="unpaid">Não pagantes<option value="none">Sem contribuições${T.map(t=>`<option value="${t.code}">${lb(t,1)}`).join('')}</select>`:''}<select onchange="ord=this.value;upd()"><option value="az">A–Z<option value="n">Mais contribuições</select></div>`;
+function proj(p){cur=p;curAdm=0;return `<div class="sec"><h2>${pl[p]}</h2><div class="chips">${cols(p).map(t=>`<span style="--c:${t.color}" title="${e(t.hint)}"><b>${t.label}:</b> ${e(t.hint)}</span>`).join('')}</div>${bar(0)}<div id="tb">${tbl(p,0)}</div></div>`}
+
+function me(){return `<div class="sec"><h2>Consulte sua situação</h2><div class="bar2"><input id="nm" list="dl" placeholder="Digite seu nome" oninput="pick()"></div><datalist id="dl">${act().map(s=>`<option value="${e(s.name)}">`).join('')}</datalist><div id="pn"></div></div>`}
+function pick(){const v=$('#nm').value.trim().toUpperCase(),s=act().find(x=>x.name===v),rq=s?Q.filter(x=>x.student_id===s.id):[];
+ $('#pn').innerHTML=s?`<div class="card"><h3>${e(s.name)}</h3><span class="pill ${P.has(s.id)?'ok':'no'}">${P.has(s.id)?'Pagamento confirmado':'Pagamento não confirmado'}</span>${['inter','ger'].map(p=>`<h4>${pl[p]}</h4><div class="chips">${cols(p).filter(t=>t.code!=='paid').map(t=>`<span class="lg" style="--c:${t.color}">${sq(s,t)} ${t.label}</span>`).join('')}</div>`).join('')}<p><b>${cnt(s.id)}</b> atividades registradas</p><small>Esta página apresenta as contribuições que foram registradas no sistema. A ausência de um registro não prova que o aluno não ajudou.</small>${rq.length?'<h4>Suas solicitações</h4>'+rq.map(x=>`<p>#${x.id} · ${pl[x.project]} · ${e(lab(x.type_code))} <span class="pill ${x.status}">${x.status}</span></p>`).join(''):''}</div>`:''}
+
+function req(){return `<div class="sec"><h2>Esqueci de registrar uma contribuição?</h2><div class="card form"><label>Seu nome<select id="rs">${act().map(s=>`<option value="${s.id}">${e(s.name)}`).join('')}</select></label><label>Projeto<select id="rp" onchange="cats()"><option value="inter">Interclasse<option value="ger">Projeto das Gerações</select></label><label>Categoria<select id="rc"></select></label><label>Descrição (opcional)<textarea id="rd" rows="3" maxlength="500"></textarea></label><label>Data aproximada<input id="rt" type="date"></label><button class="btn" onclick="send()">Enviar solicitação</button><small>Depois acompanhe pelo número em “Minha situação”.</small></div></div>`}
+const cats=()=>{$('#rc').innerHTML=cols($('#rp').value).map(t=>`<option value="${t.code}">${t.label}`).join('')};
+async function send(){const{data,error}=await db.rpc('submit_suggestion',{sid:$('#rs').value,proj:$('#rp').value,code:$('#rc').value,descr:$('#rd').value,dt:$('#rt').value||null});
+ if(error)return toast('Erro ao enviar. Tente de novo.',1);toast('Solicitação enviada para análise! Nº '+data);await load();render()}
+
+function how(){const st=[['Interclasse','Abra “Interclasse” e veja a tabela de todos os alunos.'],['Projeto das Gerações','Abra “Gerações” para ver a tabela desse projeto.'],['Sua situação','Em “Minha situação”, digite seu nome.'],['Solicitação','Esqueceram de registrar algo? Envie em “Solicitações”.'],['Cores','Quadrado colorido = registrado. Cinza tracejado = sem registro. Verde = pagamento (vale para os dois projetos).']];
+ return `<div class="sec"><h2>Como funciona</h2><div class="grid">${st.map(([a,b],i)=>`<div class="card"><h3>${i+1}. ${a}</h3><p>${b}</p></div>`).join('')}</div><div class="card"><h3>Ajuda e configuração</h3><p>Rode o <b>database.sql</b> no SQL Editor do Supabase e confira SUPABASE_URL e SUPABASE_ANON_KEY no início do script do <b>index.html</b>.</p></div></div>`}
+
+function admin(){
+ if(!PW)return `<div class="sec card form" style="margin:auto"><h3>Entrar como administrador</h3><input id="u" placeholder="Usuário" value="admin"><input id="p" type="password" placeholder="Senha" onkeydown="event.key=='Enter'&&login()"><button class="btn" onclick="login()">Entrar</button></div>`;
+ return `<div class="sec"><div class="top2"><h2>Área administrativa</h2><span id="sv" class="sv">Pronto</span><button class="btn2" onclick="out()">Sair</button></div><div class="stats" id="sts">${sts(1)}</div><div class="tabs">${[['reg','Registro rápido'],['sol','Solicitações'],['alu','Alunos'],['rel','Relatórios'],['cfg','Configurações']].map(([k,l])=>`<a class="${tab===k?'on':''}" onclick="go('${k}')">${l}</a>`).join('')}</div>${atab()}</div>`}
+function atab(){curAdm=0;cur='all';
+ if(tab==='reg'){curAdm=1;return `<small>Clique no quadrado para marcar/desmarcar. Salva sozinho. “Pagou” vale para os dois projetos.</small>${bar(1)}<div id="tb">${tbl('all',1)}</div>`}
+ if(tab==='sol')return ['inter','ger'].map(p=>`<h3>Solicitações · ${pl[p]}</h3>`+(Q.filter(x=>x.project===p).map(x=>`<div class="card rq"><b>#${x.id} ${e(nm(x.student_id))} — ${e(lab(x.type_code))}<br><small>${e(x.description||'')} ${x.event_date||''} · enviada em ${new Date(x.created_at).toLocaleDateString('pt-BR')}</small></b><span class="pill ${x.status}">${x.status}</span>${x.status==='pendente'?`<button onclick="sg(${x.id},'aprovada')">Aprovar</button><button onclick="sg(${x.id},'recusada')">Recusar</button>`:''}</div>`).join('')||'<p>Nenhuma solicitação.</p>')).join('');
+ if(tab==='alu')return `<div class="bar2"><input id="na" placeholder="Nome do novo aluno"><button class="btn" onclick="addS()">Adicionar</button></div>`+S.map(s=>`<div class="card rq ${s.archived?'arq':''}"><b>${e(s.name)}</b><button onclick="ren('${s.id}')">Editar nome</button><button onclick="arch('${s.id}',${!s.archived})">${s.archived?'Restaurar':'Arquivar'}</button></div>`).join('');
+ if(tab==='rel')return `<div class="noprint"><button class="btn" onclick="csv()">Baixar CSV</button><button class="btn" onclick="xl()">Baixar Excel</button><button class="btn" onclick="print()">Gerar PDF</button></div><div class="pt"><h2>CONTRIBUI+ · 2º A – MAT</h2><p>Relatório geral · emitido em ${fmt(new Date())}</p></div><div class="stats">${sts()}</div><div class="chips">${T.map(t=>`<span style="--c:${t.color}">${lb(t,1)}</span>`).join('')}</div><div id="tb">${tbl('all',0)}</div>`;
+ const v=new Date(CFG.deadline||'2026-11-25T23:59:00-03:00').toLocaleString('sv-SE',{timeZone:'America/Sao_Paulo'}).replace(' ','T').slice(0,16);
+ return `<div class="card form"><h3>Prazo de pagamento (Brasília)</h3><input id="dl" type="datetime-local" value="${v}"><button class="btn" onclick="setDl()">Salvar prazo</button></div>`}
+function go(k){tab=k;q='';flt='all';ord='az';render()}
+async function login(){const pw=$('#p').value;if($('#u').value!==ADMIN_USER)return toast('Usuário ou senha incorretos',1);const{data}=await db.rpc('is_admin',{pw});if(!data)return toast('Usuário ou senha incorretos',1);PW=pw;try{sessionStorage.setItem('pw',pw)}catch{}render()}
+function out(){PW='';try{sessionStorage.removeItem('pw')}catch{}render()}
+async function A(fn,a){const{error}=await db.rpc(fn,{pw:PW,...a});if(error){sv('Erro ao salvar',1);return false}return true}
+function ap(b,s,c,on){b.classList.toggle('on',on);b.textContent=on?'✓':'';const k=s+'|'+c;if(c==='paid'){on?P.add(s):P.delete(s)}else{on?C.add(k):C.delete(k)}b.closest('tr').lastElementChild.innerHTML='<b>'+cnt(s)+'</b>';$('#sts').innerHTML=sts(1)}
+async function tg(b,s,c){const on=!b.classList.contains('on');ap(b,s,c,on);sv('Salvando...');if(await A('admin_toggle',{sid:s,code:c,val:on}))sv('Salvo ✓');else ap(b,s,c,!on)}
+async function sg(id,st){if(await A('admin_suggestion',{qid:id,st})){toast('Solicitação '+st);await load();render()}}
+async function addS(){const n=$('#na').value.trim();if(n&&await A('admin_student',{sid:null,nm:n,arch:null})){toast('Aluno adicionado');await load();render()}}
+async function ren(id){const n=prompt('Corrigir nome:',nm(id));if(n&&await A('admin_student',{sid:id,nm:n,arch:null})){toast('Nome atualizado');await load();render()}}
+async function arch(id,v){if(await A('admin_student',{sid:id,nm:null,arch:v})){toast(v?'Aluno arquivado':'Aluno restaurado');await load();render()}}
+async function setDl(){if(await A('admin_setting',{k:'deadline',v:$('#dl').value+':00-03:00'})){toast('Prazo salvo');await load();render()}}
+const data=()=>[['Nome',...T.map(t=>lb(t,1))],...act().map(s=>[s.name,...T.map(t=>has(s.id,t.code)?'Sim':'Não')])];
+function csv(){const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['\ufeff'+data().map(r=>r.map(c=>'"'+c+'"').join(';')).join('\n')],{type:'text/csv'}));a.download='contribui.csv';a.click()}
+function xl(){const w=XLSX.utils.book_new();XLSX.utils.book_append_sheet(w,XLSX.utils.aoa_to_sheet(data()),'Turma');XLSX.writeFile(w,'contribui.xlsx')}
+
+function render(){document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('on',a.dataset.s===sec));
+ const v={home,inter:()=>proj('inter'),ger:()=>proj('ger'),me,req,how,admin}[sec]||home;$('#app').innerHTML=v();if(sec==='req')cats();tick()}
+onhashchange=()=>{sec=location.hash.slice(1)||'home';q='';flt='all';ord='az';render()};
+setInterval(tick,1000);
+setInterval(async()=>{if(['home','inter','ger'].includes(sec)&&document.activeElement.tagName!=='INPUT'&&await load())render()},30000);
+load().then(render);
+</script></body></html>
